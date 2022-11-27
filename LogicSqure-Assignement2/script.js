@@ -9,7 +9,7 @@ fetch("https://raw.githubusercontent.com/debojyoti/places-fake-rest-api/master/p
             var temp = "";
             data.places.forEach((itemData,id) => {
               temp += "<tr>";
-              temp += "<td>" + id + "</td>"
+              temp += "<td>" + eval(id+1) + "</td>"
           //    temp += "<td>" +       + "</td>"
               temp += "<td>" + itemData.street_no+ " " +itemData.locality + "</td>"
               temp += "<td>" + itemData.postal_code+ "</td>"
@@ -36,15 +36,15 @@ fetch("https://raw.githubusercontent.com/debojyoti/places-fake-rest-api/master/p
               tr = table.getElementsByTagName("tr");
   
               for (let i = 0; i < tr.length; i++) {
-                  td = tr[i].getElementsByTagName("td")[1];
-                  if (td) {
-                      txtValue = td.textContent || td.innerText;
-                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                          tr[i].style.display = "";
-                      } else {
-                          tr[i].style.display = "none";
-                      }
-                  }
-              }
+                td = tr[i].getElementsByTagName("td");
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if ((td[1].innerHTML.toUpperCase().indexOf(filter) > -1 || td[2].innerHTML.toUpperCase().indexOf(filter) > -1 || td[3].innerHTML.toUpperCase().indexOf(filter) > -1 || td[4].innerHTML.toUpperCase().indexOf(filter) > -1)) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
   
           }
